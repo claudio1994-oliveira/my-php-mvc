@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">8.0",
+        "ext-pdo": "*",
+        "php-di/php-di": "^6.4.0",
+        "claud/router": "^1.0"
+    }
+}
