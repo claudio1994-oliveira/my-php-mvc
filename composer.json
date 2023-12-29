@@ -3,6 +3,7 @@
     "description": "Small PHP MVC framework",
     "type": "project",
     "license": "MIT",
+    "version": "0.x.x",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
