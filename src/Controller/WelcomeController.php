@@ -6,7 +6,7 @@ namespace App\Controller;
 
 use App\Contracts\ControllerInterface;
 
-class QuestionListController implements ControllerInterface
+class WelcomeController implements ControllerInterface
 {
     public function processesRequest(): void
     {
