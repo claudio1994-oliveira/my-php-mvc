@@ -1,11 +1,5 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$app = require_once __DIR__ . '/../config/router.php';
 
-use Router\Router\Router;
-
-$router = new Router();
-
-$router->addRoute('/', 'App\Controller\QuestionListController@processesRequest');
-
-$router->run();
+$app->run();
