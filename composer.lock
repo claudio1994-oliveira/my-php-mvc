@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "claud/router",
-            "version": "v1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/claudio1994-oliveira/router.git",
-                "reference": "75f8feddbead2a247f07f1c217a4676ed947163b"
+                "reference": "8e2102b605a23855a539e061f9285101039b4520"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/claudio1994-oliveira/router/zipball/75f8feddbead2a247f07f1c217a4676ed947163b",
-                "reference": "75f8feddbead2a247f07f1c217a4676ed947163b",
+                "url": "https://api.github.com/repos/claudio1994-oliveira/router/zipball/8e2102b605a23855a539e061f9285101039b4520",
+                "reference": "8e2102b605a23855a539e061f9285101039b4520",
                 "shasum": ""
             },
             "require-dev": {
@@ -42,9 +42,9 @@
             "description": "Package to create routes in PHP",
             "support": {
                 "issues": "https://github.com/claudio1994-oliveira/router/issues",
-                "source": "https://github.com/claudio1994-oliveira/router/tree/v1.0.0"
+                "source": "https://github.com/claudio1994-oliveira/router/tree/1.1.0"
             },
-            "time": "2023-10-03T23:41:32+00:00"
+            "time": "2023-12-29T18:23:50+00:00"
         },
         {
             "name": "laravel/serializable-closure",
