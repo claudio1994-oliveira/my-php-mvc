@@ -1,0 +1,1 @@
+{"version":1,"defects":{"App\\Tests\\Feature\\WelcomeTest::test_that_the_page_welcome_can_render":7},"times":{"App\\Tests\\Feature\\ExampleTest::testExample":0.015,"App\\Tests\\Feature\\WelcomeTest::test_that_the_page_welcome_can_render":0.529}}
