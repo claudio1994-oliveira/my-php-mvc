@@ -30,4 +30,9 @@ class User
     {
         $this->id = $id;
     }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 }

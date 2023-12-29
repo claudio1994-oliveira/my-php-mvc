@@ -61,7 +61,7 @@ class UserRepository
 
         $statement->execute();
 
-        return $statement;
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);;
     }
 
     public function findByUsername(string $username)
