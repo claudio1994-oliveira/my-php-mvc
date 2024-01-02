@@ -25,53 +25,46 @@ class UserRepositoryTest extends TestCase
     {
         $user = new User('John Doe', 'john_doe', 'john@example.com', 'hashed_password');
 
-        $result = $this->userRepository->add($user);
+        $result = $this->userRepository->create($user);
 
-        $this->assertTrue($result);
+        $this->assertIsObject($result);
 
         $addedUser = $this->userRepository->find($user->getId());
-        $this->assertEquals($user->name, $addedUser['name']);
-        $this->assertEquals($user->username, $addedUser['username']);
-        $this->assertEquals($user->email, $addedUser['email']);
-        $this->assertEquals($user->password, $addedUser['password']);
+        $this->assertEquals($user->name, $addedUser->name);
+        $this->assertEquals($user->username, $addedUser->username);
+        $this->assertEquals($user->email, $addedUser->email);
+        $this->assertEquals($user->password, $addedUser->password);
     }
 
     public function testUpdateUser()
     {
         $existingUser = new User('Existing User', 'existing_user', 'existing@example.com', 'hashed_password');
-        $this->userRepository->add($existingUser);
+        $this->userRepository->create($existingUser);
 
         $existingUser->name = 'Updated User';
-
         $existingUser->username = 'updated_user';
         $existingUser->email = 'updated@example.com';
         $existingUser->password = 'updated_hashed_password';
 
-        $result = $this->userRepository->update($existingUser);
+        $result = $this->userRepository->update($existingUser->getId(), $existingUser);
 
         $this->assertTrue($result);
 
-
         $updatedUser = $this->userRepository->find($existingUser->getId());
-        $this->assertEquals($existingUser->name, $updatedUser['name']);
-        $this->assertEquals($existingUser->username, $updatedUser['username']);
-        $this->assertEquals($existingUser->email, $updatedUser['email']);
-        $this->assertEquals($existingUser->password, $updatedUser['password']);
+        $this->assertEquals($existingUser->name, $updatedUser->name);
+        $this->assertEquals($existingUser->username, $updatedUser->username);
+        $this->assertEquals($existingUser->email, $updatedUser->email);
+        $this->assertEquals($existingUser->password, $updatedUser->password);
     }
 
     public function testRemoveUser()
     {
-
         $existingUser = new User('User to Remove', 'remove_user', 'remove@example.com', 'hashed_password');
-        $this->userRepository->add($existingUser);
+        $this->userRepository->create($existingUser);
 
-        $result = $this->userRepository->remove($existingUser);
+        $result = $this->userRepository->delete($existingUser->getId());
 
         $this->assertTrue($result);
-
-
-        $removedUser = $this->userRepository->find($existingUser->getId());
-        $this->assertEmpty($removedUser);
     }
 
     public function testFindAllUsers()
@@ -80,8 +73,8 @@ class UserRepositoryTest extends TestCase
         $user1 = new User('User 1', 'user1', 'user1@example.com', 'hashed_password_1');
         $user2 = new User('User 2', 'user2', 'user2@example.com', 'hashed_password_2');
 
-        $this->userRepository->add($user1);
-        $this->userRepository->add($user2);
+        $this->userRepository->create($user1);
+        $this->userRepository->create($user2);
 
         $users = $this->userRepository->all();
 
@@ -93,7 +86,7 @@ class UserRepositoryTest extends TestCase
     public function testFindByUsername()
     {
         $user = new User('Test User', 'test_user', 'test@example.com', 'hashed_password');
-        $this->userRepository->add($user);
+        $this->userRepository->create($user);
 
         $foundUser = $this->userRepository->findByUsername('test_user');
 

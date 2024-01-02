@@ -2,10 +2,11 @@
 
 namespace App\Repository;
 
+use App\Contracts\RepositoryInterface;
 use App\Entity\User;
 use PDO;
 
-class UserRepository
+class UserRepository implements RepositoryInterface
 {
     private PDO $pdo;
 
@@ -14,7 +15,7 @@ class UserRepository
         $this->pdo = $pdo;
     }
 
-    public function add(User $user)
+    public function create(object $user): object
     {
         $sql = 'INSERT INTO users (name, username, email, password) VALUES (?, ?, ?, ?);';
         $statement = $this->pdo->prepare($sql);
@@ -24,14 +25,18 @@ class UserRepository
         $statement->bindValue(4, $user->password);
 
         $result = $statement->execute();
+        if (!$result) {
+            throw new \RuntimeException('Could not save user');
+        }
+
         $id = $this->pdo->lastInsertId();
 
         $user->setId(intval($id));
 
-        return $result;
+        return $user;
     }
 
-    public function update(User $user)
+    public function update(int $id, object $user): bool
     {
         $sql = 'UPDATE users SET name = ?, username = ?, email = ?, password = ? WHERE id = ?;';
         $statement = $this->pdo->prepare($sql);
@@ -44,16 +49,16 @@ class UserRepository
         return $statement->execute();
     }
 
-    public function remove(User $user)
+    public function delete(int $id): bool
     {
         $sql = 'DELETE FROM users WHERE id = ?;';
         $statement = $this->pdo->prepare($sql);
-        $statement->bindValue(1, $user->id);
+        $statement->bindValue(1, $id);
 
         return $statement->execute();
     }
 
-    public function all()
+    public function all(): array
     {
         $sql = 'SELECT * FROM users;';
 
@@ -61,7 +66,7 @@ class UserRepository
 
         $statement->execute();
 
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);;
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function findByUsername(string $username)
@@ -73,12 +78,16 @@ class UserRepository
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function find(int $id)
+    public function find(int $id): null|object
     {
         $statement = $this->pdo->prepare('SELECT * FROM users WHERE id = ?;');
         $statement->bindValue(1, $id);
         $statement->execute();
 
-        return $statement->fetch(\PDO::FETCH_ASSOC);
+        $userArr = $statement->fetch(\PDO::FETCH_ASSOC);
+        $user = new User($userArr['name'], $userArr['username'], $userArr['email'], $userArr['password'], $userArr['created_at'], $userArr['updated_at']);
+
+        return $user;
     }
+
 }
