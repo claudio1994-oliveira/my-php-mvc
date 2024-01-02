@@ -2,7 +2,6 @@
 
 [![Latest Stable Version](https://poser.pugx.org/claud/my-php-mvc/v)](//packagist.org/packages/claud/my-php-mvc)
 [![Total Downloads](https://poser.pugx.org/claud/my-php-mvc/downloads)](//packagist.org/packages/claud/my-php-mvc)
-[![Latest Unstable Version](https://poser.pugx.org/claud/my-php-mvc/v/unstable)](//packagist.org/packages/claud/my-php-mvc)
 [![License](https://poser.pugx.org/claud/my-php-mvc/license)](//packagist.org/packages/claud/my-php-mvc)
 
 

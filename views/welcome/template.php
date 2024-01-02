@@ -17,7 +17,7 @@
     </section>
 </main>
 <footer>
-    <p>&copy; 2023 Meu Framework MVC</p>
+    <p>&copy; <?= date('Y') ?> Meu Framework MVC</p>
 </footer>
 <script src="js/script.js"></script>
 </body>
