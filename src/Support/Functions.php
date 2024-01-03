@@ -16,6 +16,7 @@ function view(string $view, array $data = []): void
             }
         }
         require_once __DIR__ . '/../../views/' . $completePath . '.php';
+        return;
     }
     
     require_once __DIR__ . '/../../views/' . $paths[0] . '.php';
