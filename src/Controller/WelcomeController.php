@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Contracts\ControllerInterface;
 
-class WelcomeController implements ControllerInterface
+class WelcomeController
 {
-    public function processesRequest(): void
+    public function index()
     {
-        view("welcome.template", ['title' => "Bem vindo!"]);
+
+        return view("welcome.template", ['title' => "Bem vindo!"]);
     }
 }
