@@ -1,6 +1,7 @@
 <?php
 
 use App\Provider\AppServiceProvider;
+use App\Provider\RouteServiceProvider;
 
 return [
 
@@ -8,7 +9,8 @@ return [
     'debug' => env('APP_DEBUG', false),
 
     'providers' => [
-        AppServiceProvider::class
+        AppServiceProvider::class,
+        RouteServiceProvider::class,
     ],
 
 ];

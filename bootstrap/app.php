@@ -7,6 +7,7 @@ use App\Core\Container;
 use Router\Router\Router;
 use App\Controller\WelcomeController;
 use App\Provider\ConfigServiceProvider;
+use App\Provider\RouteServiceProvider;
 use League\Container\ReflectionContainer;
 
 error_reporting(0);
@@ -23,8 +24,10 @@ $container->delegate(new ReflectionContainer());
 
 
 $container->addServiceProvider(new ConfigServiceProvider());
+$container->addServiceProvider(new RouteServiceProvider());
 
 $config = $container->get(Config::class);
+
 
 foreach ($config->get('app.providers') as $provider) {
     $container->addServiceProvider(new $provider);
@@ -34,14 +37,3 @@ foreach ($config->get('app.providers') as $provider) {
 $app = new App();
 
 $app->run();
-
-
-
-$router = new Router();
-
-/*
- * Add routes here
- */
-
-$router->addRoute('/', [WelcomeController::class, 'index']);
-$router->run();
