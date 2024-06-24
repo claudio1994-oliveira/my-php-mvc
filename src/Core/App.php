@@ -2,10 +2,13 @@
 
 namespace App\Core;
 
+use Router\Router\Router;
+
 class App
 {
     public function run()
     {
-        echo "app run";
+        $container = Container::getInstance();
+        $container->get(Router::class);
     }
 }
