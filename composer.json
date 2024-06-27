@@ -5,10 +5,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "app/"
         },
         "files": [
-            "src/Support/Functions.php"
+            "app/Support/Functions.php"
         ]
 
     },
