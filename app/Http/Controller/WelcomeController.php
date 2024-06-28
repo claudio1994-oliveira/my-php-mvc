@@ -29,8 +29,6 @@ class WelcomeController
 
         $this->response->writeBody($this->view->render("welcome.welcome", ['title' => "Bem vindo!"]));
 
-
-
-        return $response->dispatch();
+        return $this->response->dispatch();
     }
 }
