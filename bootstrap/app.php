@@ -4,8 +4,6 @@ use App\Core\App;
 
 use App\Config\Config;
 use App\Core\Container;
-use Router\Router\Router;
-use App\Controller\WelcomeController;
 use App\Provider\ConfigServiceProvider;
 use App\Provider\RouteServiceProvider;
 use League\Container\ReflectionContainer;
@@ -34,6 +32,6 @@ foreach ($config->get('app.providers') as $provider) {
 }
 
 
-$app = new App();
+$app = new App($container);
 
 $app->run();

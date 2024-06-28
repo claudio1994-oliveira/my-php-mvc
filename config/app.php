@@ -2,6 +2,8 @@
 
 use App\Provider\AppServiceProvider;
 use App\Provider\RouteServiceProvider;
+use App\Provider\ViewServiceProvider;
+use App\Views\View;
 
 return [
 
@@ -11,6 +13,7 @@ return [
     'providers' => [
         AppServiceProvider::class,
         RouteServiceProvider::class,
+        ViewServiceProvider::class,
     ],
 
 ];
