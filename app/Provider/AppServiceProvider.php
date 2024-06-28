@@ -3,6 +3,7 @@
 namespace App\Provider;
 
 use App\Config\Config;
+use App\Core\App;
 use Spatie\Ignition\Ignition;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
@@ -24,7 +25,7 @@ class AppServiceProvider extends AbstractServiceProvider implements BootableServ
     public function provides(string $id): bool
     {
         $services = [
-            'App\Core\App'
+            App::class
         ];
 
         return in_array($id, $services);

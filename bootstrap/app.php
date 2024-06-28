@@ -5,7 +5,6 @@ use App\Core\App;
 use App\Config\Config;
 use App\Core\Container;
 use App\Provider\ConfigServiceProvider;
-use App\Provider\RouteServiceProvider;
 use League\Container\ReflectionContainer;
 
 error_reporting(0);
@@ -22,7 +21,7 @@ $container->delegate(new ReflectionContainer());
 
 
 $container->addServiceProvider(new ConfigServiceProvider());
-$container->addServiceProvider(new RouteServiceProvider());
+
 
 $config = $container->get(Config::class);
 

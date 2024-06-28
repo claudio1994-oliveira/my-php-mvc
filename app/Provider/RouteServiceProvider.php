@@ -12,8 +12,9 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
     {
         $this->getContainer()->add(Router::class, function () {
 
-            $routes = require __DIR__ . '/../../routes/routes.php';
+            $routes = new Router();
 
+            (require __DIR__ . '/../../routes/routes.php')($routes, $this->container);
 
             return $routes->run();
         });

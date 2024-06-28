@@ -12,9 +12,9 @@ class App
     {
     }
 
-    public function run()
+    public function run(): void
     {
-        $this->container->get(Router::class);
         $this->container->get(View::class);
+        $this->container->get(Router::class);
     }
 }
