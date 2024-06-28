@@ -16,5 +16,6 @@ class App
     {
         $this->container->get(View::class);
         $this->container->get(Router::class);
+        $this->container->get(Request::class);
     }
 }

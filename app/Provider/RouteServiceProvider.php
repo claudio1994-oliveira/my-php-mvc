@@ -14,14 +14,11 @@ class RouteServiceProvider extends AbstractServiceProvider implements BootableSe
 
             $routes = new Router();
 
-            (require __DIR__ . '/../../routes/routes.php')($routes, $this->container);
+            (require __DIR__ . '/../../routes/routes.php')($routes);
 
             return $routes->run();
-        });
+        })->setShared(true);
     }
-
-
-
 
     public function boot(): void
     {

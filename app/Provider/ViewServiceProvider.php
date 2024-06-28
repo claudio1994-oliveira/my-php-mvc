@@ -22,7 +22,7 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
             ]);
 
             return new View($twig);
-        });
+        })->setShared(true);
     }
 
     public function boot(): void

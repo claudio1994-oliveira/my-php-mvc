@@ -15,7 +15,7 @@ class View
     {
         $view = $this->normalizerPath($view);
 
-        echo $this->twig->render($view . '.twig', $data);
+        return $this->twig->render($view . '.twig', $data);
     }
 
     protected function normalizerPath(string $view)
