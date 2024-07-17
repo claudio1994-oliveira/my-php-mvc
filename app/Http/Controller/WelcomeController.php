@@ -3,20 +3,12 @@
 
 namespace App\Http\Controller;
 
-use App\Core\Container;
-use App\Core\Request;
+use App\Core\Controller;
 
-class WelcomeController
+
+class WelcomeController extends Controller
 {
 
-    protected Request $request;
-
-
-    public function __construct()
-    {
-
-        $this->request = Container::getInstance()->get(Request::class);
-    }
 
     public function index()
     {
