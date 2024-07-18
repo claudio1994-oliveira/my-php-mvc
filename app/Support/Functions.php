@@ -1,10 +1,10 @@
 <?php
 
 use App\Core\Container;
-use App\Core\Response;
+use App\Core\Http\Response;
 use App\Views\View;
 
-function view(string $path, array $data = [])
+function view(string $path, array $data = []): Response
 {
     $view = Container::getInstance()->get(View::class);
     $response = new Response();

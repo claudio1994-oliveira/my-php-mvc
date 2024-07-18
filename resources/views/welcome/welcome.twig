@@ -16,6 +16,9 @@
 				<p>Este é um exemplo simples de uma página de boas-vindas no seu framework MVC.</p>
 				<p>Você pode começar a construir suas páginas e controladores agora!</p>
 			</section>
+			{% if user %}
+				{{ user.name }}
+			{% endif %}
 		</main>
 		<footer>
 			<p>&copy;

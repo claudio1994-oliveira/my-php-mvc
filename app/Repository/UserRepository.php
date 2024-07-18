@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Contracts\RepositoryInterface;
+use App\Core\Database\Connector;
 use App\Entity\User;
 use PDO;
 
@@ -10,9 +11,9 @@ class UserRepository implements RepositoryInterface
 {
     private PDO $pdo;
 
-    public function __construct(PDO $pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Connector::getInstance();
     }
 
     public function create(object $user): object

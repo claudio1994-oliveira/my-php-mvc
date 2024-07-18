@@ -3,7 +3,7 @@
 namespace App\Provider;
 
 
-use App\Core\Request;
+use App\Core\Http\Request;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 

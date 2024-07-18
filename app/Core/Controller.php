@@ -2,9 +2,8 @@
 
 namespace App\Core;
 
-use App\Views\View;
+use App\Core\Http\Request;
 use Psr\Container\ContainerInterface;
-use Router\Router\Router;
 
 class Controller
 {
