@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
     <section class="mx-auto w-1/2 bg-neutral-800 border-[1px] border-white rounded-2xl p-4 px-6  lg:px-8">
-        <form action="/register" method="post">
+        <form action="/register/user" method="post">
             <div class="flex flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="name" class="w-fit pl-0.5 text-sm">Name</label>
                 <input id="name" type="text"
@@ -13,7 +13,7 @@
             </div>
             <div class="flex flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="username" class="w-fit pl-0.5 text-sm">Username</label>
-                <input id="username" type="email"
+                <input id="username" type="text"
                        class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
                        name="username" placeholder="Enter your username" autocomplete="username"/>
             </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <button type="button"
+                <button type="submit"
                         class="cursor-pointer whitespace-nowrap rounded-2xl bg-purple-500 px-4 py-2 text-sm font-medium tracking-wide text-white transition hover:opacity-75 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 active:opacity-100 active:outline-offset-0 disabled:opacity-75 disabled:cursor-not-allowed dark:bg-purple-400 dark:text-black dark:focus-visible:outline-purple-400">
                     Register
                 </button>
