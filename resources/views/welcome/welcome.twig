@@ -1,32 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{{ title }}</title>
-		<link rel="stylesheet" href="css/output.css">
-	</head>
+{% extends 'layouts/app.twig' %}
 
-	<body>
-		<header>
-			<h1>Bem-vindo ao Meu Framework MVC</h1>
-		</header>
-		<main>
-			<section id="content">
-				<p>Este é um exemplo simples de uma página de boas-vindas no seu framework MVC.</p>
-				<p>Você pode começar a construir suas páginas e controladores agora!</p>
-			</section>
-			{% if user %}
-				{{ user.name }}
-			{% endif %}
-		</main>
-		<footer>
-			<p>&copy;
-				<?= date('Y') ?>
+{% block content %}
+	
+    <p>Este é um exemplo simples de uma página de boas-vindas no seu framework MVC.</p>
+    <p>Você pode começar a construir suas páginas e controladores agora!</p>
 
-				Meu Framework MVC</p>
-		</footer>
-		<script src="js/script.js"></script>
-	</body>
-
-</html>
+{% endblock %}

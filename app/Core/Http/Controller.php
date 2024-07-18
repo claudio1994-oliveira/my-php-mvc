@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\Http;
 
-use App\Core\Http\Request;
+use App\Core\Container;
 use Psr\Container\ContainerInterface;
 
 class Controller
