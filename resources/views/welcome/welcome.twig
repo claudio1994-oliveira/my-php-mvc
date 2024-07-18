@@ -1,21 +1,28 @@
 {% extends 'layouts/app.twig' %}
-
+{% block header %}
+    Bem-vindo ao Meu Framework MVC
+{% endblock %}
 {% block content %}
+    <section class="bg-neutral-800 border-[1px] border-white rounded-2xl p-4 px-6 mx-auto max-w-7xl lg:px-8">
 
-    <p class="my-4">Seja bem vindo ao seu pequeno framework PHP. A construção do MyPHP MVC nasceu na vontade de entender
-        como um
-        framework
-        funcionava debaixo dos panos e por diversão, comecei a programar.</p>
-    <p class="my-4">Ele é de fácil uso e você já pode brincar a partir da instalação.</p>
+        <p class="my-4">Seja bem vindo ao seu pequeno framework PHP. A construção do MyPHP MVC nasceu na vontade de
+            entender
+            como um
+            framework
+            funcionava debaixo dos panos e por diversão, comecei a programar.</p>
+        <p class="my-4">Ele é de fácil uso e você já pode brincar a partir da instalação.</p>
 
 
-    <p class="my-4">
-        Para carregar os estilos basta executar npm install e em seguida
-        <br>
-        <code class="block bg-neutral-700 p-2 rounded w-full mt-4">
-            npx tailwindcss -i ./resources/app/css/app.css -o ./public/css/styles.css --watch
-        </code>
+        <p class="my-4">
+            Para carregar os estilos basta executar npm install e em seguida
+            <br>
+            <code class="block bg-neutral-700 p-2 rounded w-full mt-4">
+                npx tailwindcss -i ./resources/app/css/app.css -o ./public/css/styles.css --watch
+            </code>
 
-    </p>
+        </p>
+
+    </section>
+
 
 {% endblock %}

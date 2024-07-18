@@ -9,19 +9,17 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="font-sans bg-neutral-700 text-white max-h-full">
+<body class="font-sans bg-neutral-700 text-white flex flex-col min-h-screen">
 {% include 'components/navigation.twig' %}
-<main class="py-12 px-6 mx-auto max-w-7xl lg:px-8">
+<header class="mb-8 text-center">
+    <h1 class="text-4xl font-semibold font-oswald">{% block header %}{% endblock %}</h1>
+</header>
+<main class="flex-grow p-4 py-12 ">
 
-    <header class="mb-8">
-        <h1 class="text-4xl font-semibold font-oswald">Bem-vindo ao Meu Framework MVC</h1>
-    </header>
-    <section class="bg-neutral-800 border-[1px] border-white rounded-2xl p-4">
-        {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 
-    </section>
 </main>
-<footer>
+<footer class=" text-center">
     <p>&copy; Meu Framework MVC</p>
 </footer>
 <script src="js/script.js"></script>
