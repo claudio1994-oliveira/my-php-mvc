@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body>
-<header>
-    <h1>Bem-vindo ao Meu Framework MVC</h1>
-</header>
-<main>
-    <section id="content">
+<body class="font-sans bg-neutral-700 text-white max-h-full">
+{% include 'components/navigation.twig' %}
+<main class="py-12 px-6 mx-auto max-w-7xl lg:px-8">
+
+    <header class="mb-8">
+        <h1 class="text-4xl font-semibold font-oswald">Bem-vindo ao Meu Framework MVC</h1>
+    </header>
+    <section class="bg-neutral-800 border-[1px] border-white rounded-2xl p-4">
         {% block content %}{% endblock %}
 
     </section>
 </main>
 <footer>
-    <p>&copy;
-        <?= date('Y') ?>
-
-        Meu Framework MVC</p>
+    <p>&copy; Meu Framework MVC</p>
 </footer>
 <script src="js/script.js"></script>
 </body>
-
 </html>
