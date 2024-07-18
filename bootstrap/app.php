@@ -29,8 +29,3 @@ $config = $container->get(Config::class);
 foreach ($config->get('app.providers') as $provider) {
     $container->addServiceProvider(new $provider);
 }
-
-
-$app = new App($container);
-
-$app->run();
