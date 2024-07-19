@@ -2,7 +2,7 @@
 
 namespace App\Core\Http;
 
-class Repository
+class Entity
 {
     public readonly int $id;
 

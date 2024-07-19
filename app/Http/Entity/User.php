@@ -2,9 +2,9 @@
 
 namespace App\Http\Entity;
 
-use App\Core\Http\Repository;
+use App\Core\Http\Entity;
 
-class User extends Repository
+class User extends Entity
 {
     public function __construct(
         public readonly string  $name,

@@ -4,8 +4,10 @@ namespace App\Repository;
 
 use App\Contracts\RepositoryInterface;
 use App\Core\Database\Connector;
-use App\Entity\User;
+use App\Core\Http\Entity;
+use App\Http\Entity\User;
 use PDO;
+use RuntimeException;
 
 class UserRepository implements RepositoryInterface
 {
@@ -16,25 +18,27 @@ class UserRepository implements RepositoryInterface
         $this->pdo = Connector::getInstance();
     }
 
-    public function create(object $user): object
+    /** @var User $data */
+    public function create(Entity $data): object
     {
+
         $sql = 'INSERT INTO users (name, username, email, password) VALUES (?, ?, ?, ?);';
         $statement = $this->pdo->prepare($sql);
-        $statement->bindValue(1, $user->name);
-        $statement->bindValue(2, $user->username);
-        $statement->bindValue(3, $user->email);
-        $statement->bindValue(4, $user->password);
+        $statement->bindValue(1, $data->name);
+        $statement->bindValue(2, $data->username);
+        $statement->bindValue(3, $data->email);
+        $statement->bindValue(4, password_hash($data->password, PASSWORD_ARGON2ID));
 
         $result = $statement->execute();
         if (!$result) {
-            throw new \RuntimeException('Could not save user');
+            throw new RuntimeException('Could not save user');
         }
 
         $id = $this->pdo->lastInsertId();
 
-        $user->setId(intval($id));
+        $data->setId(intval($id));
 
-        return $user;
+        return $data;
     }
 
     public function update(int $id, object $user): bool
@@ -67,7 +71,7 @@ class UserRepository implements RepositoryInterface
 
         $statement->execute();
 
-        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function findByUsername(string $username)
@@ -76,7 +80,7 @@ class UserRepository implements RepositoryInterface
         $statement->bindValue(1, $username);
         $statement->execute();
 
-        return $statement->fetch(\PDO::FETCH_ASSOC);
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function find(int $id): null|object
@@ -85,7 +89,7 @@ class UserRepository implements RepositoryInterface
         $statement->bindValue(1, $id);
         $statement->execute();
 
-        $userArr = $statement->fetch(\PDO::FETCH_ASSOC);
+        $userArr = $statement->fetch(PDO::FETCH_ASSOC);
         $user = new User($userArr['name'], $userArr['username'], $userArr['email'], $userArr['password'], $userArr['created_at'], $userArr['updated_at']);
 
         return $user;
