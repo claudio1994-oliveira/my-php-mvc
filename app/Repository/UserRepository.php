@@ -74,13 +74,18 @@ class UserRepository implements RepositoryInterface
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByUsername(string $username)
+    public function findByEmail(string $email)
     {
-        $statement = $this->pdo->prepare('SELECT * FROM users WHERE username = ?;');
-        $statement->bindValue(1, $username);
+        $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = ?;');
+        $statement->bindValue(1, $email);
         $statement->execute();
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        $userArr = $statement->fetch(PDO::FETCH_ASSOC);
+        if ($userArr) {
+            return new User($userArr['name'], $userArr['username'], $userArr['email'], $userArr['password'], $userArr['created_at'], $userArr['updated_at']);
+
+        }
+        return null;
     }
 
     public function find(int $id): null|object
@@ -93,6 +98,18 @@ class UserRepository implements RepositoryInterface
         $user = new User($userArr['name'], $userArr['username'], $userArr['email'], $userArr['password'], $userArr['created_at'], $userArr['updated_at']);
 
         return $user;
+    }
+
+    public function findByEmailAndPassword(string $email, string $password)
+    {
+        $hash = password_hash($password, PASSWORD_ARGON2ID);
+
+        $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = ? AND password = ?;');
+        $statement->bindValue(1, $email);
+        $statement->bindValue(2, $hash);
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
 }

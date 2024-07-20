@@ -21,18 +21,18 @@ class View
     protected function normalizerPath(string $view)
     {
         $paths = explode(".", $view);
+        if (count($paths) < 2) {
+            return $view;
+        }
         $completePath = "";
 
-        if (count($paths) > 1) {
-            foreach ($paths as $key => $path) {
-                if ($key + 1 >= count($paths)) {
-                    $completePath .= $path;
-                } else {
-                    $completePath .= $path . DIRECTORY_SEPARATOR;
-                }
+        foreach ($paths as $key => $path) {
+            if ($key + 1 >= count($paths)) {
+                $completePath .= $path;
+            } else {
+                $completePath .= $path . DIRECTORY_SEPARATOR;
             }
         }
-
         return $completePath;
     }
 }

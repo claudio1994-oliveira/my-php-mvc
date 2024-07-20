@@ -17,5 +17,9 @@ class User extends Entity
     {
     }
 
+    public function verifyPassword($password): bool
+    {
+        return password_verify($password, $this->password);
+    }
 
 }
