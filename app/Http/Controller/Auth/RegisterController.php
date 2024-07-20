@@ -19,7 +19,7 @@ class RegisterController extends Controller
         $user = new User(... $this->request->getParsedBody());
         (new UserRepository())->create($user);
 
-        $this->session->set('user', serialize($user));
-        
+        $this->session->set('user', $user);
+
     }
 }

@@ -23,7 +23,8 @@ class AuthenticateController extends Controller
         if ($user->verifyPassword($this->request->getParsedBody()['password'])) {
             $this->session->set('user', $user);
 
-            header('location: /dashboard');
+
+            return redirect('/dashboard');
         }
     }
 }
