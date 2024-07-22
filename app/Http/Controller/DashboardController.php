@@ -3,7 +3,7 @@
 namespace App\Http\Controller;
 
 use App\Core\Http\Controller;
-use App\Core\Http\Response;
+use Router\Http\Response;
 
 class DashboardController extends Controller
 {

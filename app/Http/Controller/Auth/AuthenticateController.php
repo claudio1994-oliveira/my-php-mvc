@@ -3,7 +3,7 @@
 namespace App\Http\Controller\Auth;
 
 use App\Core\Http\Controller;
-use App\Core\Http\Response;
+use Router\Http\Response;
 use App\Repository\UserRepository;
 
 class AuthenticateController extends Controller
@@ -22,8 +22,7 @@ class AuthenticateController extends Controller
         }
         if ($user->verifyPassword($this->request->getParsedBody()['password'])) {
             $this->session->set('user', $user);
-
-
+            
             return redirect('/dashboard');
         }
     }

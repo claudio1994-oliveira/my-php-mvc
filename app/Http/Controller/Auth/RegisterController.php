@@ -3,7 +3,7 @@
 namespace App\Http\Controller\Auth;
 
 use App\Core\Http\Controller;
-use App\Core\Http\Response;
+use Router\Http\Response;
 use App\Http\Entity\User;
 use App\Repository\UserRepository;
 
