@@ -3,6 +3,7 @@
 use App\Http\Controller\Auth\AuthenticateController;
 use App\Http\Controller\Auth\RegisterController;
 use App\Http\Controller\DashboardController;
+use App\Http\Middleware\AuthMiddleware;
 use Router\Router\Router;
 use App\Http\Controller\WelcomeController;
 
@@ -13,5 +14,5 @@ return function (Router $router) {
     $router->addRoute('/login/user', [AuthenticateController::class, 'store'], 'POST');
     $router->addRoute('/register', [RegisterController::class, 'create']);
     $router->addRoute('/register/user', [RegisterController::class, 'store'], 'POST');
-    $router->addRoute('/dashboard', [DashboardController::class, 'index']);
+    $router->addRoute('/dashboard', [DashboardController::class, 'index'], 'GET', [new AuthMiddleware()]);
 };
