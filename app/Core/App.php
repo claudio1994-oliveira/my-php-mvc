@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Core\Http\Request;
+use Router\Http\Request;
 use App\Views\View;
 use Psr\Container\ContainerInterface;
 use Router\Router\Router;

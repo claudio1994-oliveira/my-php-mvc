@@ -2,7 +2,7 @@
 
 namespace App\Core\Http;
 
-use JetBrains\PhpStorm\NoReturn;
+use Router\Http\Response;
 
 class RedirectResponse extends Response
 {
@@ -12,7 +12,7 @@ class RedirectResponse extends Response
         parent::__construct($statusCode, $reasonPhrase, $headers);
     }
 
-    #[NoReturn] public function dispatch(): Response
+    public function dispatch(): Response
     {
         header("Location: " . $this->getHeader('Location'), true, $this->getStatusCode());
         exit;

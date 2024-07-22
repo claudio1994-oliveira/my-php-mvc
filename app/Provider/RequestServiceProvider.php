@@ -2,8 +2,7 @@
 
 namespace App\Provider;
 
-
-use App\Core\Http\Request;
+use Router\Http\Request;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 
@@ -26,9 +25,8 @@ class RequestServiceProvider extends AbstractServiceProvider implements Bootable
             $serverParams = $_SERVER;
             $uploadedFiles = $_FILES;
 
-            $request = new Request($method, $uri, $headers, $body, $parsedBody, $queryParams, $serverParams, $uploadedFiles);
+            return new Request($method, $uri, $headers, $body, $parsedBody, $queryParams, $serverParams, $uploadedFiles);
 
-            return $request;
         })->setShared(true);
     }
 

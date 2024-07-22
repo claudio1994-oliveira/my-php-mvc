@@ -1,45 +1,44 @@
 {
-    "name": "claud/my-php-mvc",
-    "description": "Small PHP MVC framework",
-    "type": "project",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/"
-        },
-        "files": [
-            "app/Support/Functions.php"
-        ]
-
+  "name": "claud/my-php-mvc",
+  "description": "Small PHP MVC framework",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
     },
-    "require": {
-        "php": "^8.2",
-        "ext-pdo": "*",
-        "adbario/php-dot-notation": "^3.3",
-        "claud/router": "^1.2",
-        "league/container": "^4.2",
-        "php-di/php-di": "^6.4.0",
-        "spatie/ignition": "^1.15",
-        "twig/twig": "^3.10",
-        "vlucas/phpdotenv": "^5.6"
-    },
-    "require-dev": {
-        "guzzlehttp/guzzle": "^7.8",
-        "phpunit/phpunit": "^10.1"
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "App\\Tests\\": "tests/"
-        }
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
+    "files": [
+      "app/Support/Functions.php"
+    ]
+  },
+  "require": {
+    "php": "^8.2",
+    "ext-pdo": "*",
+    "adbario/php-dot-notation": "^3.3",
+    "claud/router": "^2.0",
+    "league/container": "^4.2",
+    "php-di/php-di": "^6.4.0",
+    "spatie/ignition": "^1.15",
+    "twig/twig": "^3.10",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^7.8",
+    "phpunit/phpunit": "^10.1"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
     }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
 }

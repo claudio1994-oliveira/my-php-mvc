@@ -4,6 +4,7 @@ namespace App\Core\Http;
 
 use App\Core\Container;
 use Psr\Container\ContainerInterface;
+use Router\Http\Request;
 
 class Controller
 {
