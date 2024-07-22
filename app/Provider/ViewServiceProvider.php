@@ -2,8 +2,11 @@
 
 namespace App\Provider;
 
+use App\Views\TwigExtension;
+use App\Views\TwigRuntimeLoader;
 use App\Views\View;
 use Twig\Environment;
+use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
@@ -20,6 +23,11 @@ class ViewServiceProvider extends AbstractServiceProvider implements BootableSer
                 'cache' => false,
                 'debug' => true,
             ]);
+
+            $twig->addRuntimeLoader(new TwigRuntimeLoader($this->getContainer()));
+
+            $twig->addExtension(new TwigExtension());
+            $twig->addExtension(new DebugExtension());
 
             return new View($twig);
         })->setShared(true);

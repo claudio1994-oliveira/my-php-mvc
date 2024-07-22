@@ -12,6 +12,7 @@ return function (Router $router) {
     $router->addRoute('/', [WelcomeController::class, 'index']);
     $router->addRoute('/login', [AuthenticateController::class, 'create']);
     $router->addRoute('/login/user', [AuthenticateController::class, 'store'], 'POST');
+    $router->addRoute('/logout', [AuthenticateController::class, 'destroy'], 'POST', [new AuthMiddleware()]);
     $router->addRoute('/register', [RegisterController::class, 'create']);
     $router->addRoute('/register/user', [RegisterController::class, 'store'], 'POST');
     $router->addRoute('/dashboard', [DashboardController::class, 'index'], 'GET', [new AuthMiddleware()]);

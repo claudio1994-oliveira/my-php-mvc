@@ -23,3 +23,8 @@ function redirect(string $url): RedirectResponse
 
     $response->dispatch();
 }
+
+function app(string $abstract)
+{
+    return Container::getInstance()->get($abstract);
+}

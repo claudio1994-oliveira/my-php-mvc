@@ -8,14 +8,32 @@
     </a>
     <!-- Desktop Menu -->
     <ul class="hidden items-center gap-4 md:flex">
+        {% if not auth() %}
+            <li><a href="/register"
+                   class="font-medium text-neutral-800 underline-offset-2 hover:text-purple-500 focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-purple-400">Register</a>
+            </li>
+            <li>
+                <a href="/login"
+                   class="font-medium text-neutral-800 underline-offset-2 hover:text-purple-500 focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-purple-400">Login</a>
+            </li>
+        {% endif %}
+        {% if auth() %}
+            <li>
+                <a href="/dashboard"
+                   class="font-medium text-neutral-800 underline-offset-2 hover:text-purple-500 focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-purple-400">Dashboard</a>
 
-        <li><a href="/register"
-               class="font-medium text-neutral-800 underline-offset-2 hover:text-purple-500 focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-purple-400">Register</a>
-        </li>
-        <li>
-            <a href="/login"
-               class="font-medium text-neutral-800 underline-offset-2 hover:text-purple-500 focus:outline-none focus:underline dark:text-neutral-300 dark:hover:text-purple-400">Login</a>
-        </li>
+            </li>
+            <li>
+                <form method="POST" action="/logout">
+                    <button type="submit"
+                            class="font-medium text-neutral-800
+                            underline-offset-2 hover:text-purple-500
+                            focus:outline-none focus:underline dark:text-neutral-300
+                            dark:hover:text-purple-400">Logout
+                    </button>
+                </form>
+            </li>
+        {% endif %}
     </ul>
     <!-- Mobile Menu Button -->
     <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" :aria-expanded="mobileMenuIsOpen"
