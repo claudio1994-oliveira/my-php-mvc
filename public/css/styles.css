@@ -877,6 +877,10 @@ video {
   padding-left: 0.125rem;
 }
 
+.text-left{
+  text-align: left;
+}
+
 .text-center{
   text-align: center;
 }
