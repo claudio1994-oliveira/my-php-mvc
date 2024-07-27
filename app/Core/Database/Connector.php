@@ -6,6 +6,7 @@ use App\Config\Config;
 use App\Core\Container;
 use PDO;
 use PDOException;
+use PDOStatement;
 
 class Connector
 {
@@ -59,4 +60,6 @@ class Connector
     {
         return Container::getInstance()->get(Config::class);
     }
+
+
 }
