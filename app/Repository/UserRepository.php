@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Contracts\RepositoryInterface;
+use App\Core\Contracts\Http\RepositoryInterface;
 use App\Core\Database\Builder;
 use App\Core\Database\Connector;
 use App\Core\Http\Entity;
