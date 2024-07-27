@@ -18,7 +18,7 @@ class UserRepository implements RepositoryInterface
     public function __construct()
     {
         $this->pdo = Connector::getInstance();
-        $this->builder = new Builder();
+        $this->builder = app(Builder::class);
     }
 
     /** @var User $data */
@@ -58,6 +58,7 @@ class UserRepository implements RepositoryInterface
 
     public function delete(int $id): bool
     {
+
         $sql = 'DELETE FROM users WHERE id = ?;';
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue(1, $id);
