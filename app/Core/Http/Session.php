@@ -4,7 +4,6 @@ namespace App\Core\Http;
 
 class Session
 {
-    // Instância única da classe
     private static $instance;
     private $flashKey = 'flash_messages';
 
@@ -23,7 +22,7 @@ class Session
     {
     }
 
-    public static function getInstance()
+    public static function getInstance(): self
     {
         if (self::$instance === null) {
             self::$instance = new self();
@@ -31,7 +30,7 @@ class Session
         return self::$instance;
     }
 
-    public function set($key, $value)
+    public function set($key, $value): void
     {
         $_SESSION[$key] = $value;
     }
@@ -41,25 +40,25 @@ class Session
         return $_SESSION[$key] ?? null;
     }
 
-    public function has($key)
+    public function has($key): bool
     {
         return isset($_SESSION[$key]);
     }
 
-    public function remove($key)
+    public function remove($key): void
     {
         if ($this->has($key)) {
             unset($_SESSION[$key]);
         }
     }
 
-    public function destroy()
+    public function destroy(): void
     {
         session_destroy();
         $_SESSION = [];
     }
 
-    public function setFlash($key, $message)
+    public function setFlash($key, $message): void
     {
         $_SESSION[$this->flashKey][$key] = $message;
     }
@@ -74,12 +73,12 @@ class Session
         return null;
     }
 
-    public function hasFlash($key)
+    public function hasFlash($key): bool
     {
         return isset($_SESSION[$this->flashKey][$key]);
     }
 
-    public function removeFlash($key)
+    public function removeFlash($key): void
     {
         if ($this->hasFlash($key)) {
             unset($_SESSION[$this->flashKey][$key]);
