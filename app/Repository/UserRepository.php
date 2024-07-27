@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Contracts\RepositoryInterface;
+use App\Core\Database\Builder;
 use App\Core\Database\Connector;
 use App\Core\Http\Entity;
 use App\Http\Entity\User;
@@ -12,31 +13,32 @@ use RuntimeException;
 class UserRepository implements RepositoryInterface
 {
     private PDO $pdo;
+    private Builder $builder;
 
     public function __construct()
     {
         $this->pdo = Connector::getInstance();
+        $this->builder = new Builder();
     }
 
     /** @var User $data */
     public function create(Entity $data): object
     {
+        $result = $this->builder
+            ->query('INSERT INTO users (name, username, email, password) VALUES (?, ?, ?, ?);',
+                [
+                    $data->name,
+                    $data->username,
+                    $data->email,
+                    password_hash($data->password, PASSWORD_ARGON2ID)
+                ])->insert();
 
-        $sql = 'INSERT INTO users (name, username, email, password) VALUES (?, ?, ?, ?);';
-        $statement = $this->pdo->prepare($sql);
-        $statement->bindValue(1, $data->name);
-        $statement->bindValue(2, $data->username);
-        $statement->bindValue(3, $data->email);
-        $statement->bindValue(4, password_hash($data->password, PASSWORD_ARGON2ID));
-
-        $result = $statement->execute();
         if (!$result) {
             throw new RuntimeException('Could not save user');
         }
 
-        $id = $this->pdo->lastInsertId();
 
-        $data->setId(intval($id));
+        $data->setId(intval($result));
 
         return $data;
     }
@@ -74,42 +76,37 @@ class UserRepository implements RepositoryInterface
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByEmail(string $email)
+    public function findByEmail(string $email): ?User
     {
-        $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = ?;');
-        $statement->bindValue(1, $email);
-        $statement->execute();
+        $user = $this->builder->query("SELECT * FROM users WHERE email = ?;", [$email])->first();
 
-        $userArr = $statement->fetch(PDO::FETCH_ASSOC);
-        if ($userArr) {
-            return new User($userArr['name'], $userArr['username'], $userArr['email'], $userArr['password'], $userArr['created_at'], $userArr['updated_at']);
-
+        if ($user) {
+            return new User($user->name,
+                $user->username,
+                $user->email,
+                $user->password,
+                $user->created_at,
+                $user->updated_at
+            );
         }
         return null;
     }
 
     public function find(int $id): null|object
     {
-        $statement = $this->pdo->prepare('SELECT * FROM users WHERE id = ?;');
-        $statement->bindValue(1, $id);
-        $statement->execute();
+        $user = $this->builder->query('SELECT * FROM users WHERE id = ?;', [$id])->first();
 
-        $userArr = $statement->fetch(PDO::FETCH_ASSOC);
-        $user = new User($userArr['name'], $userArr['username'], $userArr['email'], $userArr['password'], $userArr['created_at'], $userArr['updated_at']);
-
-        return $user;
+        if ($user) {
+            return new User($user->name,
+                $user->username,
+                $user->email,
+                $user->password,
+                $user->created_at,
+                $user->updated_at
+            );
+        }
+        return null;
     }
 
-    public function findByEmailAndPassword(string $email, string $password)
-    {
-        $hash = password_hash($password, PASSWORD_ARGON2ID);
-
-        $statement = $this->pdo->prepare('SELECT * FROM users WHERE email = ? AND password = ?;');
-        $statement->bindValue(1, $email);
-        $statement->bindValue(2, $hash);
-        $statement->execute();
-
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
 
 }
