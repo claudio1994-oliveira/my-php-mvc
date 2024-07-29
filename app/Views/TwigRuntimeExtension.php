@@ -19,6 +19,11 @@ class TwigRuntimeExtension extends AbstractExtension
         return app(Session::class)->has('user');
     }
 
+    public function user()
+    {
+        return app(Session::class)->has('user') ? app(Session::class)->get('user') : null;
+    }
+
     public function session()
     {
         return app(Session::class);
