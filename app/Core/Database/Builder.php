@@ -54,7 +54,7 @@ class Builder
         return $this->executeQuery()->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function first(): object
+    public function first(): bool|object
     {
         return $this->executeQuery()->fetch(PDO::FETCH_OBJ);
     }

@@ -16,15 +16,20 @@ class AuthenticateController extends Controller
 
     public function store(): RedirectResponse
     {
-        $user = (new UserRepository())->findByEmail($this->request->getParsedBody()['email']);
-        if (!$user) {
-            return redirect('/login');
-        }
-        if ($user->verifyPassword($this->request->getParsedBody()['password'])) {
-            $this->session->set('user', $user);
+        /** @TODO Create the validations rules here */
 
-            return redirect('/dashboard');
+        $user = (new UserRepository())->findByEmail($this->request->getParsedBody()['email']);
+        if ($user) {
+            if ($user->verifyPassword($this->request->getParsedBody()['password'])) {
+                $this->session->set('user', $user);
+
+                return redirect('/dashboard');
+            }
         }
+
+
+        $this->session->setFlash('error', "We couldn't find you with those credentials.");
+        return redirect('/login');
     }
 
     public function destroy(): RedirectResponse

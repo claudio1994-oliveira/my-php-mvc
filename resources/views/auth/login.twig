@@ -9,7 +9,10 @@
                 <label for="email" class="w-fit pl-0.5 text-sm">Email</label>
                 <input id="email" type="email"
                        class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
-                       name="email" placeholder="Enter your name" autocomplete="name"/>
+                       name="email" placeholder="Enter your email" autocomplete="email"/>
+                {% if session().hasFlash('error') %}
+                    <span class="font-semibold text-red-500 text-sm">{{ session().getFlash('error') }}</span>
+                {% endif %}
             </div>
             <div class="flex  flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="passwordInput" class="w-fit pl-0.5 text-sm">Password</label>

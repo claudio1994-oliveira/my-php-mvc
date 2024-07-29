@@ -6,11 +6,17 @@ class Session
 {
     private static $instance;
     private $flashKey = 'flash_messages';
+    private $flashData = [];
 
     private function __construct()
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
+        }
+        
+        if (isset($_SESSION[$this->flashKey])) {
+            $this->flashData = $_SESSION[$this->flashKey];
+            unset($_SESSION[$this->flashKey]);
         }
     }
 
@@ -65,9 +71,9 @@ class Session
 
     public function getFlash($key)
     {
-        if (isset($_SESSION[$this->flashKey][$key])) {
-            $message = $_SESSION[$this->flashKey][$key];
-            unset($_SESSION[$this->flashKey][$key]);
+        if (isset($this->flashData[$key])) {
+            $message = $this->flashData[$key];
+            unset($this->flashData[$key]);
             return $message;
         }
         return null;
@@ -75,13 +81,13 @@ class Session
 
     public function hasFlash($key): bool
     {
-        return isset($_SESSION[$this->flashKey][$key]);
+        return isset($this->flashData[$key]);
     }
 
     public function removeFlash($key): void
     {
         if ($this->hasFlash($key)) {
-            unset($_SESSION[$this->flashKey][$key]);
+            unset($this->flashData[$key]);
         }
     }
 }
