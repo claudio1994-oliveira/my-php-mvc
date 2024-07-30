@@ -12,7 +12,7 @@ class Controller
     protected Request $request;
     protected Session $session;
 
-    protected Validator $validator;
+    private Validator $validator;
 
     public function __construct()
     {
@@ -21,5 +21,21 @@ class Controller
         $this->session = $this->container->get(Session::class);
 
         $this->validator = new Validator();
+    }
+
+    public function validate(array $rules, array $messages = []): null|RedirectResponse
+    {
+
+        $this->validator->validate($this->request->getParsedBody(), $rules, $messages);
+
+
+        if ($this->validator->hasErrors()) {
+            
+            $url = $this->request->getHeader('Referer');
+
+            return redirect($url);
+        }
+
+        return null;
     }
 }

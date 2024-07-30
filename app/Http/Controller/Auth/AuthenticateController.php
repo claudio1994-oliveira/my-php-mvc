@@ -24,18 +24,17 @@ class AuthenticateController extends Controller
             'password.required' => 'O campo senha é obrigatório'
         ];
 
-        $this->validator
-            ->validate($this->request->getParsedBody(),
-                [
-                    'email' => [
-                        'required',
-                        'min' => [50],
-                        'email'
-                    ],
-                    'password' => ['required']
+        $this->validate(
+            [
+                'email' => [
+                    'required',
+                    'min' => [3],
+                    'email'
                 ],
-                $messages
-            );
+                'password' => ['required']
+            ],
+            $messages
+        );
 
         $user = (new UserRepository())->findByEmail($this->request->getParsedBody()['email']);
         if ($user) {
