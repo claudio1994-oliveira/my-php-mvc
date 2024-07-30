@@ -5,18 +5,25 @@ namespace App\Core\Http;
 class Session
 {
     private static $instance;
-    private $flashKey = 'flash_messages';
-    private $flashData = [];
+    private string $flashKey = 'flash_messages';
+    private string $errorsKey = 'errors_messages';
+    private array $flashData = [];
+    private array $errors = [];
 
     private function __construct()
     {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         if (isset($_SESSION[$this->flashKey])) {
             $this->flashData = $_SESSION[$this->flashKey];
             unset($_SESSION[$this->flashKey]);
+        }
+
+        if (isset($_SESSION[$this->errorsKey])) {
+            $this->errors = $_SESSION[$this->errorsKey];
+            unset($_SESSION[$this->errorsKey]);
         }
     }
 
@@ -89,5 +96,20 @@ class Session
         if ($this->hasFlash($key)) {
             unset($this->flashData[$key]);
         }
+    }
+
+    public function setError($error, $message): void
+    {
+        $_SESSION[$this->errorsKey][$error] = $message;
+    }
+
+    public function hasErrors($key): bool
+    {
+        return isset($this->errors[$key]);
+    }
+
+    public function getErrors(): array
+    {
+        return $this->errors;
     }
 }

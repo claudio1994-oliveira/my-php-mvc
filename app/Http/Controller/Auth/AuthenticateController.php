@@ -16,7 +16,7 @@ class AuthenticateController extends Controller
 
     public function store(): RedirectResponse
     {
-        
+
         $messages = [
             'email.required' => 'O campo email é obrigatório',
             'email.email' => 'O campo email deve ser um email válido',

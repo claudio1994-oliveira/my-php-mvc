@@ -30,6 +30,11 @@ class Controller
 
 
         if ($this->validator->hasErrors()) {
+
+
+            foreach ($this->validator->getErrors() as $error => $message) {
+                $this->session->setError($error, $message[0]);
+            }
             
             $url = $this->request->getHeader('Referer');
 
