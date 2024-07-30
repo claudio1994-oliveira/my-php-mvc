@@ -13,7 +13,9 @@
                        focus-visible:outline-offset-2 focus-visible:outline-purple-500
                        disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700
                        dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
-                       name="name" placeholder="Enter your name" autocomplete="name"/>
+                       name="name" placeholder="Enter your name" autocomplete="name"
+                       value="{{ old('name') }}"
+                />
                 {% if error('name') %}
                     <span class="font-semibold text-red-500 text-sm">{{ error('name') }}</span>
                 {% endif %}
@@ -25,7 +27,9 @@
                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
                        focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75
                        dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
-                       name="username" placeholder="Enter your username" autocomplete="username"/>
+                       name="username" placeholder="Enter your username" autocomplete="username"
+                       value="{{ old('username') }}"
+                />
                 {% if error('username') %}
                     <span class="font-semibold text-red-500 text-sm">{{ error('username') }}</span>
                 {% endif %}
@@ -37,7 +41,9 @@
                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
                        focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75
                        dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
-                       name="email" placeholder="Enter your email" autocomplete="email"/>
+                       name="email" placeholder="Enter your email" autocomplete="email"
+                       value="{{ old('email') }}"
+                />
                 {% if error('email') %}
                     <span class="font-semibold text-red-500 text-sm">{{ error('email') }}</span>
                 {% endif %}
