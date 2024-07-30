@@ -15,7 +15,7 @@
     "php": "^8.2",
     "ext-pdo": "*",
     "adbario/php-dot-notation": "^3.3",
-    "claud/router": "^2.0",
+    "claud/router": "^2.1",
     "league/container": "^4.2",
     "php-di/php-di": "^6.4.0",
     "spatie/ignition": "^1.15",
