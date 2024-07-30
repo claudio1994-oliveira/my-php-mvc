@@ -20,7 +20,7 @@
                     <input :type="showPassword ? 'text' : 'password'" id="passwordInput"
                            class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
                            name="password" autocomplete="current-password" placeholder="Enter your password"/>
-                    {% if error('email') %}
+                    {% if error('password') %}
                         <span class="font-semibold text-red-500 text-sm">{{ error('password') }}</span>
                     {% endif %}
                     <button type="submit" @click="showPassword = !showPassword"

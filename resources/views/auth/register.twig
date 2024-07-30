@@ -4,24 +4,33 @@
 {% endblock %}
 {% block content %}
     <section class="mx-auto w-1/2 bg-neutral-800 border-[1px] border-white rounded-2xl p-4 px-6  lg:px-8">
-        <form action="/register/user" method="post">
+        <form action="/register/user" method="post" novalidate>
             <div class="flex flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="name" class="w-fit pl-0.5 text-sm">Name</label>
                 <input id="name" type="text"
                        class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
                        name="name" placeholder="Enter your name" autocomplete="name"/>
+                {% if error('name') %}
+                    <span class="font-semibold text-red-500 text-sm">{{ error('name') }}</span>
+                {% endif %}
             </div>
             <div class="flex flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="username" class="w-fit pl-0.5 text-sm">Username</label>
                 <input id="username" type="text"
                        class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
                        name="username" placeholder="Enter your username" autocomplete="username"/>
+                {% if error('username') %}
+                    <span class="font-semibold text-red-500 text-sm">{{ error('username') }}</span>
+                {% endif %}
             </div>
             <div class="flex flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="email" class="w-fit pl-0.5 text-sm">Email</label>
                 <input id="email" type="email"
                        class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
-                       name="email" placeholder="Enter your name" autocomplete="name"/>
+                       name="email" placeholder="Enter your email" autocomplete="email"/>
+                {% if error('email') %}
+                    <span class="font-semibold text-red-500 text-sm">{{ error('email') }}</span>
+                {% endif %}
             </div>
             <div class="flex  flex-col gap-1 text-neutral-800 dark:text-neutral-300">
                 <label for="passwordInput" class="w-fit pl-0.5 text-sm">Password</label>
@@ -29,6 +38,9 @@
                     <input :type="showPassword ? 'text' : 'password'" id="passwordInput"
                            class="w-full rounded-2xl border border-neutral-300 bg-neutral-200 px-2 py-2 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 disabled:cursor-not-allowed disabled:opacity-75 dark:border-neutral-700 dark:bg-neutral-900/50 dark:focus-visible:outline-purple-400"
                            name="password" autocomplete="current-password" placeholder="Enter your password"/>
+                    {% if error('password') %}
+                        <span class="font-semibold text-red-500 text-sm">{{ error('password') }}</span>
+                    {% endif %}
                     <button type="submit" @click="showPassword = !showPassword"
                             class="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-800 dark:text-neutral-300"
                             aria-label="Show password">
