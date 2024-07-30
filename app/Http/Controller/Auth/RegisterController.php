@@ -17,6 +17,14 @@ class RegisterController extends Controller
 
     public function store(): RedirectResponse
     {
+
+        $this->validate([
+            "name" => ['required', 'min' => [3], 'max' => [255]],
+            "username" => ['required', 'min' => [3], 'max' => [255]],
+            "email" => ['required', 'email', 'min' => [3], 'max' => [255]],
+            "password" => ['required', 'min' => [3], 'max' => [255]],
+        ]);
+
         $user = new User(... $this->request->getParsedBody());
         (new UserRepository())->create($user);
 
