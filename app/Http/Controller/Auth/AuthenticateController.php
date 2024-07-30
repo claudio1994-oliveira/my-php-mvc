@@ -16,7 +16,26 @@ class AuthenticateController extends Controller
 
     public function store(): RedirectResponse
     {
-        /** @TODO Create the validations rules here */
+
+
+        $messages = [
+            'email.required' => 'O campo email é obrigatório',
+            'email.email' => 'O campo email deve ser um email válido',
+            'password.required' => 'O campo senha é obrigatório'
+        ];
+
+        $this->validator
+            ->validate($this->request->getParsedBody(),
+                [
+                    'email' => [
+                        'required',
+                        'min' => [50],
+                        'email'
+                    ],
+                    'password' => ['required']
+                ],
+                $messages
+            );
 
         $user = (new UserRepository())->findByEmail($this->request->getParsedBody()['email']);
         if ($user) {
