@@ -7,8 +7,10 @@ class Session
     private static $instance;
     private string $flashKey = 'flash_messages';
     private string $errorsKey = 'errors_messages';
+    private string $oldsKey = 'old_messages';
     private array $flashData = [];
     private array $errors = [];
+    private array $olds = [];
 
     private function __construct()
     {
@@ -24,6 +26,11 @@ class Session
         if (isset($_SESSION[$this->errorsKey])) {
             $this->errors = $_SESSION[$this->errorsKey];
             unset($_SESSION[$this->errorsKey]);
+        }
+
+        if (isset($_SESSION[$this->oldsKey])) {
+            $this->olds = $_SESSION[$this->oldsKey];
+            unset($_SESSION[$this->oldsKey]);
         }
     }
 
@@ -116,5 +123,25 @@ class Session
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    public function setOld($field, $value): void
+    {
+        $_SESSION[$this->oldsKey][$field] = $value;
+    }
+
+    public function hasOld($field): bool
+    {
+        return isset($this->olds[$field]);
+    }
+
+    public function getOlds(): array
+    {
+        return $this->olds;
+    }
+
+    public function getOld($field): string
+    {
+        return $this->olds[$field] ?? '';
     }
 }

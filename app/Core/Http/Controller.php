@@ -32,10 +32,17 @@ class Controller
         if ($this->validator->hasErrors()) {
 
 
-            foreach ($this->validator->getErrors() as $error => $message) {
-                $this->session->setError($error, $message[0]);
+            foreach ($this->validator->getErrors() as $rule => $message) {
+                $this->session->setError($rule, $message[0]);
+
             }
-            
+
+            foreach ($this->request->getParsedBody() as $field => $value) {
+                if ($field != 'password') {
+                    $this->session->setOld($field, $value);
+                }
+            }
+
             $url = $this->request->getHeader('Referer');
 
             return redirect($url);

@@ -39,4 +39,9 @@ class TwigRuntimeExtension extends AbstractExtension
         return app(Session::class)->getErrors();
     }
 
+    public function old($field): string
+    {
+        return app(Session::class)->getOld($field);
+    }
+
 }
