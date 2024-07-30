@@ -27,6 +27,11 @@ class Session
         }
     }
 
+    public function getError($key)
+    {
+        return $this->errors[$key] ?? null;
+    }
+
     private function __clone()
     {
     }
@@ -103,7 +108,7 @@ class Session
         $_SESSION[$this->errorsKey][$error] = $message;
     }
 
-    public function hasErrors($key): bool
+    public function hasError($key): bool
     {
         return isset($this->errors[$key]);
     }

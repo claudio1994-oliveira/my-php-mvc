@@ -29,4 +29,14 @@ class TwigRuntimeExtension extends AbstractExtension
         return app(Session::class);
     }
 
+    public function error($key): null|string
+    {
+        return app(Session::class)->hasError($key) ? app(Session::class)->getError($key) : null;
+    }
+
+    public function errors(): array
+    {
+        return app(Session::class)->getErrors();
+    }
+
 }

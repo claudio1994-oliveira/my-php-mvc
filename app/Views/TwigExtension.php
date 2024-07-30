@@ -14,6 +14,8 @@ class TwigExtension extends AbstractExtension
             new TwigFunction('auth', [TwigRuntimeExtension::class, 'auth']),
             new TwigFunction('user', [TwigRuntimeExtension::class, 'user']),
             new TwigFunction('session', [TwigRuntimeExtension::class, 'session']),
+            new TwigFunction('error', [TwigRuntimeExtension::class, 'error']),
+            new TwigFunction('errors', [TwigRuntimeExtension::class, 'errors']),
         ];
     }
 }
