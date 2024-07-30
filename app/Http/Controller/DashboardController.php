@@ -9,6 +9,6 @@ class DashboardController extends Controller
 {
     public function index(): Response
     {
-        return view('dashboard');
+        return view('dashboard', ['title' => 'Dashboard']);
     }
 }
