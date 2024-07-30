@@ -11,6 +11,6 @@ class WelcomeController extends Controller
 {
     public function index(): Response
     {
-        return view('welcome.welcome', ['title' => "Bem vindo!"]);
+        return view('welcome.welcome', ['title' => "Welcome!"]);
     }
 }

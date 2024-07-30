@@ -11,7 +11,7 @@ class AuthenticateController extends Controller
 {
     public function create(): Response
     {
-        return view('auth.login');
+        return view('auth.login', ['title' => "Login"]);
     }
 
     public function store(): RedirectResponse
