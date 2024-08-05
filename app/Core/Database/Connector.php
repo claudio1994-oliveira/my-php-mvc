@@ -3,10 +3,9 @@
 namespace App\Core\Database;
 
 use App\Config\Config;
-use App\Core\Container;
 use PDO;
 use PDOException;
-use PDOStatement;
+
 
 class Connector
 {
@@ -31,9 +30,9 @@ class Connector
         if (is_null(self::$instance)) {
             try {
                 self::$instance = new PDO(
-                    'mysql:host=' . self::getConfig()->get('database.mysql.host') . ';dbname=' . self::getConfig()->get('database.mysql.database'),
-                    self::getConfig()->get('database.mysql.username'),
-                    self::getConfig()->get('database.mysql.password')
+                    'mysql:host=' . app(Config::class)->get('database.mysql.host') . ';dbname=' . app(Config::class)->get('database.mysql.database'),
+                    app(Config::class)->get('database.mysql.username'),
+                    app(Config::class)->get('database.mysql.password')
                 );
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
@@ -47,7 +46,7 @@ class Connector
         if (is_null(self::$instance)) {
             try {
                 self::$instance = new PDO(
-                    'sqlite:' . self::getConfig()->get('database.sqlite.database')
+                    'sqlite:' . app(Config::class)->get('database.sqlite.path') . app(Config::class)->get('database.sqlite.database')
                 );
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
@@ -55,11 +54,4 @@ class Connector
             }
         }
     }
-
-    protected static function getConfig(): Config
-    {
-        return Container::getInstance()->get(Config::class);
-    }
-
-
 }

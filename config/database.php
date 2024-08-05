@@ -15,7 +15,7 @@ return [
     'sqlite' => [
         'driver' => 'sqlite',
         'database' => env('DB_DATABASE', 'database.sqlite'),
-        'path' => env('DB_PATH', __DIR__ . '/../database'),
+        'path' => env('DB_PATH', __DIR__ . '/../database/'),
         'prefix' => '',
     ],
 ];
