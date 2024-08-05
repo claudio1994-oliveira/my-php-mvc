@@ -43,9 +43,6 @@ class Session
     {
     }
 
-    private function __wakeup()
-    {
-    }
 
     public static function getInstance(): self
     {
