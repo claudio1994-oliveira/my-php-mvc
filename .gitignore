@@ -5,3 +5,4 @@ database.sqlite
 composer.lock
 package-lock.json
 node_modules
+.env
