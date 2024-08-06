@@ -6,8 +6,11 @@ use App\Http\Controller\DashboardController;
 use App\Http\Middleware\AuthMiddleware;
 use Router\Router\Router;
 use App\Http\Controller\WelcomeController;
+use App\Http\Middleware\CSRFMiddleware;
 
 return function (Router $router) {
+
+    $router->addMiddleware(new CSRFMiddleware());
 
     $router->addRoute('/', [WelcomeController::class, 'index']);
     $router->addRoute('/login', [AuthenticateController::class, 'create']);
