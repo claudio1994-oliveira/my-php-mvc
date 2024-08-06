@@ -2,6 +2,7 @@
 
 use App\Provider\AppServiceProvider;
 use App\Provider\BuilderServiceProvider;
+use App\Provider\CSRFServiceProvider;
 use App\Provider\SessionServiceProvider;
 use App\Provider\ViewServiceProvider;
 use App\Provider\RouteServiceProvider;
@@ -19,7 +20,8 @@ return [
         ViewServiceProvider::class,
         RequestServiceProvider::class,
         SessionServiceProvider::class,
-        BuilderServiceProvider::class
+        BuilderServiceProvider::class,
+        CSRFServiceProvider::class,
     ],
 
 ];
