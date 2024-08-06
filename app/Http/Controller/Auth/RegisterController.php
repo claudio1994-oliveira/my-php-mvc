@@ -25,7 +25,9 @@ class RegisterController extends Controller
             "password" => ['required', 'min' => [3], 'max' => [255]],
         ]);
 
-        $user = new User(... $this->request->getParsedBody());
+        $data = $this->request->getParsedBody();
+        unset($data['csrf_token']);
+        $user = new User(...$data);
         (new UserRepository())->create($user);
 
         $this->session->set('user', $user);
