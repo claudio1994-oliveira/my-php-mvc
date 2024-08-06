@@ -3,6 +3,7 @@
 namespace App\Views;
 
 use App\Config\Config;
+use App\Core\Http\CSRF;
 use App\Core\Http\Session;
 use Twig\Extension\AbstractExtension;
 
@@ -44,4 +45,10 @@ class TwigRuntimeExtension extends AbstractExtension
         return app(Session::class)->getOld($field);
     }
 
+    public function csrf()
+    {
+        $csrf = app(CSRF::class);
+
+        return $csrf->insertTokenInForm();
+    }
 }

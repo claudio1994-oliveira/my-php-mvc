@@ -17,6 +17,7 @@ class TwigExtension extends AbstractExtension
             new TwigFunction('error', [TwigRuntimeExtension::class, 'error']),
             new TwigFunction('errors', [TwigRuntimeExtension::class, 'errors']),
             new TwigFunction('old', [TwigRuntimeExtension::class, 'old']),
+            new TwigFunction('csrf', [TwigRuntimeExtension::class, 'csrf']),
         ];
     }
 }
