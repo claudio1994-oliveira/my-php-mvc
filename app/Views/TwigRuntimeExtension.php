@@ -45,10 +45,10 @@ class TwigRuntimeExtension extends AbstractExtension
         return app(Session::class)->getOld($field);
     }
 
-    public function csrf()
+    public function csrf($formName)
     {
         $csrf = app(CSRF::class);
 
-        return $csrf->insertTokenInForm();
+        return $csrf->insertNameInform($formName) . $csrf->insertTokenInForm($formName);
     }
 }

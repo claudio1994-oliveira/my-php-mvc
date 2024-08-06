@@ -15,7 +15,10 @@ class CSRFMiddleware implements MiddlewareInterface
 
             $csrf = Container::getInstance()->get(CSRF::class);
             $token = $request->getParsedBody()['csrf_token'] ?? '';
-            if (!$csrf->validateToken($token)) {
+            $formName = $request->getParsedBody()['form_name'] ?? '';
+
+
+            if (!$csrf->validateToken($formName, $token)) {
                 echo 'Invalid CSRF Token';
                 die();
             }

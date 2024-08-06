@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 	<form action="/login" method="POST" novalidate>
-		{{ csrf() | raw}}
+		{{ csrf("login") | raw}}
 		<section class="mx-auto w-full md:w-1/2 bg-neutral-800 border-[1px] border-white rounded-2xl p-4 px-6  lg:px-8">
 			<div class="flex flex-col gap-1 text-neutral-800 dark:text-neutral-300">
 				<label for="email" class="w-fit pl-0.5 text-sm">Email</label>
