@@ -26,7 +26,7 @@ class RegisterController extends Controller
         ]);
 
         $data = $this->request->getParsedBody();
-        unset($data['csrf_token']);
+        unset($data['csrf_token'], $data['form_name']);
         $user = new User(...$data);
         (new UserRepository())->create($user);
 
